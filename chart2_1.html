@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>chart2_1.html</title>
+	<style type="text/css">
+		.para {
+			color:blue;
+		}
+	</style>
+	<script type="text/javascript" src="d3.js" charset="utf-8"></script>
+</head>
+<body>
+	<p class="target1" id="target1"></p>
+	<p class="target2" id="target2"></p>
+	<p class="target" id="target3"></p>
+	<div>
+		<p class="target" id="target4"></p>
+		<p class="target5" id="target5"></p>
+		<p class="target" id="target6"><span>no</span></p>
+	</div>
+	<p class="target" id="target7"><i>good boy!</i></p>
+	<script type="text/javascript">
+		d3.select("p")
+			.text("Hello,world1!");
+		d3.select("#target2")
+			.text("Hello,world2!");	
+		d3.select(".target")
+			.text("Hello,world3!");	
+		d3.select("div p")
+			.text("Hello,world4!");
+		d3.select("p.target5")
+			.text("Hello,world5!");	
+		d3.select("body :nth-child(3)")
+			.text("<i>not a good</i>");	
+
+		var para = d3.selectAll("p");
+			//.each(function(d,i){
+			//	d3.select(this).append("h1").text("New caption!");
+			//});
+		//para.classed("para",true);
+		//选择集状态
+		console.log(para.empty());
+		console.log(para.node());
+		console.log(para.size());
+		console.log(d3.select("#target7").text());
+		console.log(d3.select("#target7").html());
+		d3.select("p").append("h1").text("append a new element");
+		d3.select("div").insert("p","#target5").text("insert a new element");
+		d3.select("#target7").remove();
+		//console.log(para[0][0]);
+		//版本原因导致不支持raw selection
+	//d3.select(para[0][0]).text("A new choice!");
+		//d3.select(para[0][1]).text("A new choice!2");
+		//选择器修改函数
+		/*
+			selection.attr();
+			selection.text();
+			selection.style();
+			selection.classed();
+			selection.property();
+			selection.html();
+			迭代selection
+			selection.each(function(d,i){
+				d3.select(this).append("h1").text("New caption!");
+			})
+		*/
+	</script>
+</body>
+</html>

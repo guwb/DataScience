@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>chart3_1.html</title>
+	<script type="text/javascript" src="d3.js"></script>
+	<style type="text/css">
+	.hbar {
+	    min-height: 15px;
+	    min-width: 10px;
+	    height: 20px;
+	    background-color: steelblue;
+	    margin-left: 50px;
+	    margin-bottom: 2px;
+	    font-size: 11px;
+	    color: #f0f8ff;
+	    text-align: right;
+	    line-height: 30px;
+	    padding-right: 10px;
+	    padding-top: 10px;
+	}
+	body {
+		background-color: red;
+		background-image: url("11.jpg");
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		background-position: center;
+	}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		//enter,update,exit mode
+		var data=[23,14,25,96,19,20,31,26];
+		var colr=d3.scale.linear().domain([0,100]).range([0,100]);
+		console.log(colr(59));
+		function render(data){
+			d3.select("body").selectAll("div.hbar")
+				.data(data)
+				.enter()
+				.append("div")
+				  .attr("class","hbar")
+				.append("span");
+			d3.select("body").selectAll("div.hbar")
+				.data(data)
+				.style("width",function(d){
+					return d*3+"px";
+				})
+				.select("span")
+				.text(function(d){
+				  	return d;
+				  });
+			d3.select("body").selectAll("div.hbar")
+				.data(data)
+				.exit()
+				.remove();
+		}
+		setInterval(function(){
+			//data.shift data.unshift data.pop data.push
+			data.shift();
+			data.push(Math.round(Math.random()*100));
+			//render(data);
+		},3000);
+		render(data);
+		console.dir(d3.selectAll("div.hbar"));
+	</script>
+</body>
+</html>
